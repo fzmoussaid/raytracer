@@ -1,7 +1,5 @@
-#pragma once
-
 #include <cmath>
-#include <iostream>
+#include <ostream>
 #include "Vector3D.hpp"
 
 Vector3D::Vector3D(): e_{0,0,0}{}
@@ -30,18 +28,18 @@ Vector3D& Vector3D::operator*=(const Vector3D &v) {
 }
 
 Vector3D& Vector3D::operator/=(const double t) {
-    e_[0] *= v.e_[0];
-    e_[1] *= v.e_[1];
-    e_[2] *= v.e_[2];
-    return *this *= 1/t;
+    e_[0] *= 1/t;
+    e_[1] *= 1/t;
+    e_[2] *= 1/t;
+    return *this;
 }
 
-double Vector3D::lengthSquared() const {
+double Vector3D::LengthSquared() const {
     return e_[0]*e_[0] + e_[1]*e_[1] + e_[2]*e_[2];
     }
 
-double Vector3D::length() const {
-    return sqrt(lengthSquared());
+double Vector3D::Length() const {
+    return sqrt(LengthSquared());
 }
      
 std::ostream& operator<<(std::ostream &out, const Vector3D &v) {
@@ -85,5 +83,5 @@ Vector3D cross(const Vector3D &u, const Vector3D &v) {
 }
 
 Vector3D unit_vector(Vector3D v) {
-    return v / v.length();
+    return v / v.Length();
 }

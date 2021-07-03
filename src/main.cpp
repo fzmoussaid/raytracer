@@ -13,8 +13,8 @@ int main() {
         for (int i = 0; i < ImageWidth; i++) {
             Color PixelColor (double(i) / (ImageWidth-1), 
                               double(j) / (ImageHeight-1), 
-                              0.25 );  )
-            WriteColor(std::out, PixelColor);
+                              0.25 );  
+            WriteColor(std::cout, PixelColor);
         }
         std::cerr << "\nDone\n";
     }

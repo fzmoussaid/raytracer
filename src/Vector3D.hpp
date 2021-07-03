@@ -1,4 +1,5 @@
 #pragma once
+#include <ostream>
 
 class Vector3D {
 
@@ -6,9 +7,9 @@ class Vector3D {
         Vector3D();
         Vector3D(double e0, double e1, double e2);
 
-        double x();
-        double y();
-        double z();
+        double x() const;
+        double y() const;
+        double z() const;
 
         Vector3D operator-() const;
         double operator[](int i) const;
@@ -19,11 +20,11 @@ class Vector3D {
 
         Vector3D& operator*=(const Vector3D &v);
 
-        Vector3D& operator/=(const double t):
+        Vector3D& operator/=(const double t);
         double LengthSquared() const;
         double Length() const;
 
-    private:
+    public:
         double e_[3];
 
 };
