@@ -70,18 +70,18 @@ Vector3D operator/(Vector3D v, double t) {
     return (1/t) * v;
 }
 
-double dot(const Vector3D &u, const Vector3D &v) {
+double Dot(const Vector3D &u, const Vector3D &v) {
     return u.e_[0] * v.e_[0]
          + u.e_[1] * v.e_[1]
          + u.e_[2] * v.e_[2];
 }
 
-Vector3D cross(const Vector3D &u, const Vector3D &v) {
+Vector3D Cross(const Vector3D &u, const Vector3D &v) {
     return Vector3D(u.e_[1] * v.e_[2] - u.e_[2] * v.e_[1],
                 u.e_[2] * v.e_[0] - u.e_[0] * v.e_[2],
                 u.e_[0] * v.e_[1] - u.e_[1] * v.e_[0]);
 }
 
-Vector3D unit_vector(Vector3D v) {
+Vector3D UnitVector(Vector3D v) {
     return v / v.Length();
 }
