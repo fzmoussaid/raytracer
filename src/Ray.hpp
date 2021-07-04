@@ -12,7 +12,7 @@ class Ray {
 
         Point3D at(double t) const;
 
-    public:
+    private:
         Point3D o_;
         Vector3D dir_;
 };

@@ -43,23 +43,23 @@ double Vector3D::Length() const {
 }
      
 std::ostream& operator<<(std::ostream &out, const Vector3D &v) {
-    return out << v.e_[0] << ' ' << v.e_[1] << ' ' << v.e_[2];
+    return out << v.x() << ' ' << v.y() << ' ' << v.z();
 }
 
 Vector3D operator+(const Vector3D &u, const Vector3D &v) {
-    return Vector3D(u.e_[0] + v.e_[0], u.e_[1] + v.e_[1], u.e_[2] + v.e_[2]);
+    return Vector3D(u.x() + v.x(), u.y() + v.y(), u.z() + v.z());
 }
 
  Vector3D operator-(const Vector3D &u, const Vector3D &v) {
-    return Vector3D(u.e_[0] - v.e_[0], u.e_[1] - v.e_[1], u.e_[2] - v.e_[2]);
+    return Vector3D(u.x() - v.x(), u.y() - v.y(), u.z() - v.z());
 }
 
 Vector3D operator*(const Vector3D &u, const Vector3D &v) {
-    return Vector3D(u.e_[0] * v.e_[0], u.e_[1] * v.e_[1], u.e_[2] * v.e_[2]);
+    return Vector3D(u.x() * v.x(), u.y() * v.y(), u.z() * v.z());
 }
 
 Vector3D operator*(double t, const Vector3D &v) {
-    return Vector3D(t*v.e_[0], t*v.e_[1], t*v.e_[2]);
+    return Vector3D(t*v.x(), t*v.y(), t*v.z());
 }
 
 Vector3D operator*(const Vector3D &v, double t) {
@@ -71,15 +71,15 @@ Vector3D operator/(Vector3D v, double t) {
 }
 
 double Dot(const Vector3D &u, const Vector3D &v) {
-    return u.e_[0] * v.e_[0]
-         + u.e_[1] * v.e_[1]
-         + u.e_[2] * v.e_[2];
+    return u.x() * v.x()
+         + u.y() * v.y()
+         + u.z() * v.z();
 }
 
 Vector3D Cross(const Vector3D &u, const Vector3D &v) {
-    return Vector3D(u.e_[1] * v.e_[2] - u.e_[2] * v.e_[1],
-                u.e_[2] * v.e_[0] - u.e_[0] * v.e_[2],
-                u.e_[0] * v.e_[1] - u.e_[1] * v.e_[0]);
+    return Vector3D(u.y() * v.z() - u.z() * v.y(),
+                u.z() * v.x() - u.x() * v.z(),
+                u.x() * v.y() - u.y() * v.x());
 }
 
 Vector3D UnitVector(Vector3D v) {

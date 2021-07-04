@@ -24,7 +24,7 @@ class Vector3D {
         double LengthSquared() const;
         double Length() const;
 
-    public:
+    private:
         double e_[3];
 
 };
