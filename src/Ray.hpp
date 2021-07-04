@@ -1,6 +1,5 @@
 #pragma once
 #include "Vector3D.hpp"
-#include "Color.hpp"
 
 class Ray {
     public:
@@ -17,5 +16,4 @@ class Ray {
         Vector3D dir_;
 };
 
-Color RayColor(const Ray& r);
 

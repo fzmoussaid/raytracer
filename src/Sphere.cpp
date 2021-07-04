@@ -23,7 +23,8 @@ bool Sphere::Hit(const Ray& r, double t_min, double t_max, HitRecord& rec) const
 
     rec.t       = root;
     rec.p       = r.at(rec.t);
-    rec.normal  = (rec.p - center_) / radius_;
+    Vector3D outward_normal = (rec.p - center_) / radius_;
+    rec.SetFaceNormal(r, outward_normal);
 
     return true;
 }

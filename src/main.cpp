@@ -3,15 +3,24 @@
 #include "Color.hpp"
 #include "Vector3D.hpp"
 #include "Ray.hpp"
+#include "Sphere.hpp"
+#include "HittableList.hpp"
+#include "Utils.hpp"
+
 
 
 int main() {
-    // Image
+    // Image Settings
     const double AspectRatio    = 16.0 / 9.0;
     const int ImageWidth        = 400;
     const int ImageHeight       = static_cast<int>(ImageWidth / AspectRatio);
 
-    // Camera
+    //World
+    HittableList world;
+    world.Add(make_shared<Sphere>(Point3D(0,0,-1), 0.5));
+    world.Add(make_shared<Sphere>(Point3D(0,-100.5,-1), 100));
+
+    // Camera Settings
     double ViewportHeight       = 2.0;
     double ViewportWidth        = AspectRatio * ViewportHeight;
     double FocalLength          = 1.0;
@@ -28,7 +37,7 @@ int main() {
             double x = double(i) / (ImageWidth-1);
             double y = double(j) / (ImageHeight-1); 
             Ray r(Origin, LowerLeftCorner + x*Horizontal + y*Vertical - Origin);
-            Color PixelColor = RayColor(r);
+            Color PixelColor = RayColor(r, world);
             WriteColor(std::cout, PixelColor);
         }
         std::cerr << "\nDone\n";
