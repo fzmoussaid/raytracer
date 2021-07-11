@@ -21,8 +21,9 @@ bool Sphere::Hit(const Ray& r, double t_min, double t_max, HitRecord& rec) const
             return false;
     }
 
-    rec.t       = root;
-    rec.p       = r.at(rec.t);
+    rec.t           = root;
+    rec.p           = r.at(rec.t);
+    rec.MaterialPtr = materialPtr_;
     Vector3D outward_normal = (rec.p - center_) / radius_;
     rec.SetFaceNormal(r, outward_normal);
 

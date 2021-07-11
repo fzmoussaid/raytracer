@@ -28,8 +28,11 @@ Color RayColor(const Ray& r, const Hittable& world, int depth) {
         return Color(0,0,0);
     
     if (world.Hit(r, 0.001, infinity, rec)) {
-        Point3D target = rec.p + RandomInHemisphere(rec.normal);
-        return 0.5* RayColor(Ray(rec.p, target -rec.p), world, depth-1);
+        Ray scattered;
+        Color attenuation;
+        if (rec.MaterialPtr->Scatter(r, rec, attenuation, scattered))
+            return attenuation * RayColor(scattered, world, depth-1); 
+        return Color(0, 0, 0);
     }
 
     Vector3D unit_direction = UnitVector(r.Direction());

@@ -24,6 +24,8 @@ class Vector3D {
         double LengthSquared() const;
         double Length() const;
 
+        bool NearZero() const; 
+        
         static Vector3D Random();
         static Vector3D Random(double min, double max);
 
@@ -40,12 +42,16 @@ Vector3D operator*(const Vector3D &u, const Vector3D &v);
 Vector3D operator*(double t, const Vector3D &v);
 Vector3D operator*(const Vector3D &v, double t);
 Vector3D operator/(Vector3D v, double t);
+
 double Dot(const Vector3D &u, const Vector3D &v);
 Vector3D Cross(const Vector3D &u, const Vector3D &v);
 Vector3D UnitVector(Vector3D v);
+Vector3D Reflect(const Vector3D& v, const Vector3D& n);
+
 Vector3D RandomInUnitSphere();
 Vector3D RandomUnitVector();
 Vector3D RandomInHemisphere(const Vector3D& normal); 
 
+        
 using Point3D = Vector3D;
 using Color = Vector3D;

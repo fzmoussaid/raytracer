@@ -2,16 +2,19 @@
 
 #include "Ray.hpp"
 #include "Vector3D.hpp"
+#include "Material.hpp"
+#include <memory>
 
 struct HitRecord {
     Point3D p;
     Vector3D normal;
+    std::shared_ptr<Material> MaterialPtr;
     double t;
-    bool front_face;
+    bool FrontFace;
 
     inline void SetFaceNormal(const Ray& r, const Vector3D& outward_normal) {
-        front_face = Dot(r.Direction(), outward_normal) < 0;
-        normal = front_face ? outward_normal :-outward_normal;
+        FrontFace = Dot(r.Direction(), outward_normal) < 0;
+        normal = FrontFace ? outward_normal :-outward_normal;
     }
 
 };

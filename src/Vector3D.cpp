@@ -51,6 +51,13 @@ Vector3D Vector3D::Random(double min, double max) {
     return Vector3D(RandomDouble(min,max), RandomDouble(min,max), RandomDouble(min,max));
 }
 
+// Return true if the vector is close to zero in all dimensions.
+bool  Vector3D::NearZero() const {
+    const auto s = 1e-8;
+    return (fabs(e_[0]) < s) && (fabs(e_[1]) < s) && (fabs(e_[2]) < s);
+}
+
+
 std::ostream& operator<<(std::ostream &out, const Vector3D &v) {
     return out << v.x() << ' ' << v.y() << ' ' << v.z();
 }
@@ -95,6 +102,10 @@ Vector3D UnitVector(Vector3D v) {
     return v / v.Length();
 }
 
+Vector3D Reflect(const Vector3D& v, const Vector3D& n){
+    return v - 2*Dot(v,n)*n;
+}
+
 Vector3D RandomInUnitSphere() {
    while (true) {
         auto p = Vector3D::Random(-1,1);
@@ -115,6 +126,5 @@ Vector3D RandomInHemisphere(const Vector3D& normal){
         return -in_unit_sphere;   
 
 }
-
 
 

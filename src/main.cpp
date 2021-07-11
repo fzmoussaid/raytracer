@@ -7,6 +7,8 @@
 #include "HittableList.hpp"
 #include "Utils.hpp"
 #include "Camera.hpp"
+#include "Metal.hpp"
+#include "Lambertian.hpp"
 
 
 
@@ -20,8 +22,15 @@ int main() {
 
     //World
     HittableList World;
-    World.Add(make_shared<Sphere>(Point3D(0,0,-1), 0.5));
-    World.Add(make_shared<Sphere>(Point3D(0,-100.5,-1), 100));
+    auto material_ground = make_shared<Lambertian>(Color(0.8, 0.8, 0.0));
+    auto material_center = make_shared<Lambertian>(Color(0.7, 0.3, 0.3));
+    auto material_left   = make_shared<Metal>(Color(0.8, 0.8, 0.8));
+    auto material_right  = make_shared<Metal>(Color(0.8, 0.6, 0.2));
+
+    World.Add(make_shared<Sphere>(Point3D( 0.0, -100.5, -1.0), 100.0, material_ground));
+    World.Add(make_shared<Sphere>(Point3D( 0.0,    0.0, -1.0),   0.5, material_center));
+    World.Add(make_shared<Sphere>(Point3D(-1.0,    0.0, -1.0),   0.5, material_left));
+    World.Add(make_shared<Sphere>(Point3D( 1.0,    0.0, -1.0),   0.5, material_right));
 
     // Camera 
     Camera cam;
