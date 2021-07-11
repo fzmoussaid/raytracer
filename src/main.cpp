@@ -16,6 +16,7 @@ int main() {
     const int ImageWidth        = 400;
     const int ImageHeight       = static_cast<int>(ImageWidth / AspectRatio);
     const int SamplesPerPixel   = 100;
+    const int depth             = 50;
 
     //World
     HittableList World;
@@ -34,7 +35,7 @@ int main() {
                 double x = double(i + RandomDouble()) / (ImageWidth-1);
                 double y = double(j + RandomDouble()) / (ImageHeight-1); 
                 Ray r = cam.GetRay(x, y);
-                PixelColor += RayColor(r, World);                    
+                PixelColor += RayColor(r, World, depth);                    
             }
         
             WriteColor(std::cout, PixelColor, SamplesPerPixel);

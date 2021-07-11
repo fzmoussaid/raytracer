@@ -1,6 +1,7 @@
 #include <cmath>
 #include <ostream>
 #include "Vector3D.hpp"
+#include "Utils.hpp"
 
 Vector3D::Vector3D(): e_{0,0,0}{}
 Vector3D::Vector3D(double e0, double e1, double e2): e_{e0,e1,e2} {}
@@ -42,6 +43,14 @@ double Vector3D::Length() const {
     return sqrt(LengthSquared());
 }
      
+Vector3D Vector3D::Random() {
+    return Vector3D(RandomDouble(), RandomDouble(), RandomDouble());
+}
+
+Vector3D Vector3D::Random(double min, double max) {
+    return Vector3D(RandomDouble(min,max), RandomDouble(min,max), RandomDouble(min,max));
+}
+
 std::ostream& operator<<(std::ostream &out, const Vector3D &v) {
     return out << v.x() << ' ' << v.y() << ' ' << v.z();
 }
@@ -85,3 +94,27 @@ Vector3D Cross(const Vector3D &u, const Vector3D &v) {
 Vector3D UnitVector(Vector3D v) {
     return v / v.Length();
 }
+
+Vector3D RandomInUnitSphere() {
+   while (true) {
+        auto p = Vector3D::Random(-1,1);
+        if (p.LengthSquared() >= 1) continue;
+        return p;
+    }
+}
+
+Vector3D RandomUnitVector() {
+    return UnitVector(RandomInUnitSphere());
+}
+
+Vector3D RandomInHemisphere(const Vector3D& normal){
+    Vector3D in_unit_sphere = RandomInUnitSphere();
+    if (Dot(in_unit_sphere, normal) > 0.0)
+        return in_unit_sphere;
+    else
+        return -in_unit_sphere;   
+
+}
+
+
+
